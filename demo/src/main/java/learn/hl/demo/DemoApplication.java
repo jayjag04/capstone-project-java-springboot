@@ -39,7 +39,7 @@ public class DemoApplication {
         Wallet wallet = Wallet.createFileSystemWallet(walletPath);
         // load a CCP
         Path networkConfigPath = Paths.get("..", "..", "test-network", "organizations", "peerOrganizations", "org1.example.com", "connection-org1.yaml");
-        networkConfigPath = Paths.get("C:\\Users\\jjaganathan\\Downloads\\connection-artist.json");
+        networkConfigPath = Paths.get("connection-artist.json");
         Gateway.Builder builder = Gateway.createBuilder();
         builder.identity(wallet, "appUser2").networkConfig(networkConfigPath).discovery(true);
 
