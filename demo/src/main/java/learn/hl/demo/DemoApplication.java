@@ -41,7 +41,7 @@ public class DemoApplication {
         Path networkConfigPath = Paths.get("..", "..", "test-network", "organizations", "peerOrganizations", "org1.example.com", "connection-org1.yaml");
         networkConfigPath = Paths.get("connection-artist.json");
         Gateway.Builder builder = Gateway.createBuilder();
-        builder.identity(wallet, "appUser2").networkConfig(networkConfigPath).discovery(true);
+        builder.identity(wallet, "appUser3").networkConfig(networkConfigPath).discovery(true);
 
         // create a gateway connection
         try (Gateway gateway = builder.connect()) {
