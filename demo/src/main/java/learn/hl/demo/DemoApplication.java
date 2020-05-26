@@ -35,7 +35,7 @@ public class DemoApplication {
         System.setProperty("org.hyperledger.fabric.sdk.service_discovery.as_localhost", "true");
         EnrollAdmin.createAdmin();
         RegisterUser.register();
-        Path walletPath = Paths.get("wallet");
+        Path walletPath = Paths.get("/home/ubuntu/wallet");
         Wallet wallet = Wallet.createFileSystemWallet(walletPath);
         // load a CCP
         Path networkConfigPath = Paths.get("..", "..", "test-network", "organizations", "peerOrganizations", "org1.example.com", "connection-org1.yaml");
