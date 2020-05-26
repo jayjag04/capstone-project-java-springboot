@@ -31,19 +31,19 @@ public class RegisterUser {
 		// Create a CA client for interacting with the CA.
 		Properties props = new Properties();
 		props.put("pemFile",
-				"C:\\home\\jay\\organizations\\peerOrganizations\\artist.mediacoin.com\\ca\\ca.artist.mediacoin.com-cert.pem");
+				"ca.artist.mediacoin.com-cert.pem");
 		props.put("allowAllHostNames", "true");
 		HFCAClient caClient = HFCAClient.createNewInstance("https://localhost:7054", props);
 		CryptoSuite cryptoSuite = CryptoSuiteFactory.getDefault().getCryptoSuite();
 		caClient.setCryptoSuite(cryptoSuite);
 
 		// Create a wallet for managing identities
-		Wallet wallet = Wallet.createFileSystemWallet(Paths.get("wallet"));
+		Wallet wallet = Wallet.createFileSystemWallet(Paths.get("/home/ubuntu/wallet"));
 
 		// Check to see if we've already enrolled the user.
-		boolean userExists = wallet.exists("appUser2");
+		boolean userExists = wallet.exists("appUser3");
 		if (userExists) {
-			System.out.println("An identity for the user \"appUser2\" already exists in the wallet");
+			System.out.println("An identity for the user \"appUser3\" already exists in the wallet");
 			return;
 		}
 
@@ -103,14 +103,14 @@ public class RegisterUser {
 //		((HFCAIdentity)hfcaIdentities[0])
 
 		// Register the user, enroll the user, and import the new identity into the wallet.
-		RegistrationRequest registrationRequest = new RegistrationRequest("appUser2");
+		RegistrationRequest registrationRequest = new RegistrationRequest("appUser3");
 		registrationRequest.setAffiliation("org1.department1");
-		registrationRequest.setEnrollmentID("appUser2");
+		registrationRequest.setEnrollmentID("appUser3");
 		String enrollmentSecret = caClient.register(registrationRequest, admin);
 
-		Enrollment enrollment = caClient.enroll("appUser2", enrollmentSecret);
+		Enrollment enrollment = caClient.enroll("appUser3", enrollmentSecret);
 		Identity user = Identity.createIdentity("artistMSP", enrollment.getCert(), enrollment.getKey());
-		wallet.put("appUser2", user);
+		wallet.put("appUser3", user);
 		System.out.println("Successfully enrolled user \"appUser2\" and imported it into the wallet");
 	}
 
